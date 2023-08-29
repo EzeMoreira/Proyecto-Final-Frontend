@@ -55,10 +55,10 @@ export const NavBar = () => {
 								<NavLink to="/about" className="fs-4">CONTACT US</NavLink>
 							</>
 						)}
-						<NavLink to="/administrator" className="fs-4">PRODUCTS</NavLink>
+						<NavLink to="/menu" className="fs-4">PRODUCTS</NavLink>
 					</div>
 					<NavLink to="/favoritos" activeClassName="active-link" className="fs-4"><FaShoppingCart /></NavLink>
-					<NavLink to="/menu" activeClassName="active-link" className="fs-4"><FaSearch /></NavLink>
+					<NavLink to="" activeClassName="active-link" className="fs-4"><FaSearch /></NavLink>
 
 					{localStorage.getItem("user") && (
 						<NavDropdown title="Cursos" id="basic-nav-dropdown">
