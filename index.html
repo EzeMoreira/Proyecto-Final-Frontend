@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frontend prueba de proyecto</title>
+</head>
+<body>
+    <button onclick="sendPost()">Click</button>
+    <script>
+        const sendPost = () => 
+        fetch("http://localhost:4444/api/createUser", {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify({
+                name: "Augusto",
+                lastName: "Ezequiel",
+                userName: "Terminendeunavez",
+            }),
+        })
+    </script>
+</body>
+</html>
