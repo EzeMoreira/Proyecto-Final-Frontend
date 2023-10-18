@@ -67,7 +67,7 @@ export const Register = () => {
   return (
     <>
       <div
-        className="cont-form"
+        className="cont-form-reg"
 		style={{
 			backgroundImage: `url(${theme2})`,
 			backgroundSize: "cover",
@@ -75,10 +75,10 @@ export const Register = () => {
 			backgroundPosition: "center center",
 		  }}
       >
-        <Container className="cont-form">
-          <Form className="formu2" onSubmit={formik.handleSubmit}>
-            <h1 className="title-form" style={{ textAlign: "center" }}>Register</h1>
-            <Form.Group className="content-form" controlId="formBasicEmail">
+        <Container className="cont-form-reg">
+          <Form className="formu-reg" onSubmit={formik.handleSubmit}>
+            <h1 className="title-form-reg" style={{ textAlign: "center" }}>Register</h1>
+            <Form.Group className="content-form-reg" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -97,7 +97,7 @@ export const Register = () => {
                 <div className="errorMessage">{formik.errors.email}</div>
               )}
             </Form.Group>
-            <Form.Group className="content-form" controlId="formBasicPassword">
+            <Form.Group className="content-form-reg" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 name="password"
@@ -116,7 +116,7 @@ export const Register = () => {
                 <div className="errorMessage">{formik.errors.password}</div>
               )}
             </Form.Group>
-            <Form.Group className="content-form" controlId="formBasicUser">
+            <Form.Group className="content-form-reg" controlId="formBasicUser">
               <Form.Label>User</Form.Label>
               <Form.Control
                 name="username"
@@ -135,7 +135,7 @@ export const Register = () => {
                 <div className="errorMessage">{formik.errors.username}</div>
               )}
             </Form.Group>
-            <Form.Group className="content-form" controlId="formBasicAddress">
+            <Form.Group className="content-form-reg" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
               <Form.Control
                 name="address"
@@ -155,7 +155,7 @@ export const Register = () => {
               )}
             </Form.Group>
             <Button
-			  className="button-form"
+			  className="button-form-reg"
               type="submit"
 			  style={{ backgroundColor: "#794228", borderStyle: "none" }}
               onClick={handleSubmit}
@@ -163,7 +163,7 @@ export const Register = () => {
             >
               Register
             </Button>
-			<NavLink to="/login" className="text2">
+			<NavLink to="/login" className="text-reg">
 			  Already you have an account?, Log in
             </NavLink>
           </Form>

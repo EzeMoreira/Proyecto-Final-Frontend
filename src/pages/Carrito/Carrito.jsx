@@ -29,7 +29,6 @@ export const Carrito= () => {
 		      .required("* Obligatory field")
 		      .min(6, "The phone number must have at least 6 characters")
           .max(15, "The telephone number must have a maximum of 15 characters"),
-             
     })
 
   const total = () =>
@@ -68,40 +67,6 @@ export const Carrito= () => {
       validationSchema,
       onSubmit,
     })
-    const handlePagoOnline = () => {
-      if (cart.length === 0 ) {
-        alert("The cart is empty. Please add products before purchasing.");
-      }
-      if (Object.keys(formik.values).length === 0){
-        alert("The form is empty");
-      }
-       else {
-        if (Object.keys(formik.values).length === 0) {
-          alert(
-            "Please complete all required fields correctly."
-          );
-        } else {
-          setShowDiv(true);
-          setShowDiv2(false);
-        }
-      }   
-    };
-    const handleEnviarPedido = () => {
-      if (cart.length === 0) {
-        alert("The cart is empty. Please add products before purchasing.");
-      } else {
-        if (Object.keys(formik.values).length === 0) {
-          alert(
-            "Please complete all required fields correctly."
-          );
-        } else {
-          clearCart();
-          formik.resetForm();
-          setShowDiv( false);
-          setShowDiv2 (true); 
-        }  
-      }
-    };
 
     const handleSubmit = () => {
       if (cart.length === 0) {
