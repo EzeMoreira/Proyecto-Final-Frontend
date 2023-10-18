@@ -24,20 +24,13 @@ nav .title-nav {
     margin-left: 1.5rem;
 }
 
-.bot {
-    display: block;
-    text-decoration: none;
-    color: white;
-    padding: 0.5rem;
-    margin: 0 0.5rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
+.button-nav {
+    background-color: #372214;
 }
 
-.bot:not(.active):hover {
+.button-nav:hover {
     background-color:#613c24 ;
 }
-
 
 nav ul {
     display: flex;

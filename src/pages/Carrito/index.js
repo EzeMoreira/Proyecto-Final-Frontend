@@ -1,1 +1,1 @@
-export {Carrito} from "./Carrito"
+export { Carrito } from "./Carrito"

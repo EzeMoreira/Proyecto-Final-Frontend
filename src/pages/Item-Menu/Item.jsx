@@ -1,10 +1,9 @@
-import { useContext, useState, useEffect  } from "react";
-import { DataContext } from "../DataContext/DataContext";
-import "../../css/home.css";
+import { useState, useEffect, useContext  } from "react";
+import { DataContext } from "../../components/DataContext/DataContext";
+import "../../css/menu.css";
 
 export const Item = ({ name, price, id, imagen }) => {
   const [menu, setMenu] = useState([]);
-  const [cart, setCart] = useState([DataContext]);
   const { addCart } = useContext(DataContext);
 
   useEffect(() => {
@@ -15,9 +14,8 @@ export const Item = ({ name, price, id, imagen }) => {
 
   
   const handleAddToCart = () => {
-    const itemToAdd = { ...menu};
-    addCart(itemToAdd);
-    alert("Producto agregado al carrito con éxito!");
+    const itemToAdd = { name, price, id, imagen }; 
+    addCart(itemToAdd); 
   };
 
   return (

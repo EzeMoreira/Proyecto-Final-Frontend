@@ -7,8 +7,8 @@ import "../../css/navBar.css";
 
 export const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+	const { cart } = useContext(DataContext);
   const [cartItems] = useState([]);
-	const {cart} = useContext(DataContext)
 
   const handleClick = () => {
     let validator = window.confirm(`Esta seguro que desea cerrar sesion?`);
@@ -59,13 +59,7 @@ export const NavBar = () => {
 								<NavLink to="/carrito"><CartIcon itemCount={cartItemCount}/>{cart.length}</NavLink>
 						</li>
             <li>
-              <button
-                className="bot"
-                onClick={handleClick}
-                style={{ backgroundColor:"#372214",borderStyle: "none" }}
-              >
-                Log out
-              </button>
+              <NavLink className="button-nav" onClick={handleClick}>Log out</NavLink>
             </li>
           </>
         )}
