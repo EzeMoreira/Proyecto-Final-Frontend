@@ -1,9 +1,9 @@
-.cont-form{
+.cont-form-reg{
     display: flex;
     justify-content: center;
 }
 
-.formu2 {
+.formu-reg {
     width: 24rem;
     height: 40rem;
     border-style: solid;
@@ -13,26 +13,26 @@
     opacity: .9;
 }
 
-.title-form {
+.title-form-reg {
     text-align: center;
     color: rgb(255, 255, 255);
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
 
-.content-form {
+.content-form-reg {
     color: rgb(255, 255, 255);
     margin-top: 1rem;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
 }
 
-.button-form {
+.button-form-reg{
     margin-top: 1.5rem;
     margin-left: 1.5rem;
 }
 
-.text2 {
+.text-reg {
     display: flex;
     font-size: .8rem;
     color: white;

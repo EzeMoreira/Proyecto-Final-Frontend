@@ -24,7 +24,7 @@
   width: auto !important;
 }
 
-.h3 {
+.h3-admin {
   display: flex;
   color: black;
   align-items: center;
@@ -64,15 +64,15 @@
   max-width: 400px;
 }
 
-label {
+.label-admin {
   color: black;
   font-weight: bold;
   margin-right: 10px;
   width: auto !important;
 }
 
-input,
-textarea {
+.input,
+.textarea-admin {
   width: 100%;
   margin-top: 4px;
   padding: 8px;
@@ -92,8 +92,8 @@ textarea {
   cursor: pointer;
 }
 
-h1 {
-  color: white;
+.h1admin {
+  color: rgb(0, 0, 0);
 }
 #admin {
   display: flex;
@@ -104,7 +104,7 @@ h1 {
   width: 100px;
   margin-left: 50%;
 }
-form {
+.form {
   display: flex;
 }
 #th {
@@ -158,8 +158,8 @@ form {
     margin-right: 5px;
   }
 
-  input,
-  textarea {
+  .input,
+  .textarea-admin {
     width: auto !important;
   }
 }

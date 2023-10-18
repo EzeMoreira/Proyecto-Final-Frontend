@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 import "../../css/administrator.css";
 
@@ -100,6 +102,33 @@ export const Administrator = () => {
     setShowButtons(true);
   };
 
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required("* Campo obligatorio")
+      .min(2, "El nombre debe tener al menos 3 caracteres"),
+    description: Yup.string()
+      .required("* Campo obligatorio")
+      .min(2, "La descripción debe tener al menos 3 caracteres"),
+    imagen: Yup.string()
+      .required("* Campo obligatorio")
+      .min(2, "La imagen debe tener al menos 3 caracteres"),
+    price: Yup.string()
+      .required("* Campo obligatorio")
+      .min(1, "El precio debe tener al menos 6 caracteres"),
+});
+
+const initialValues = {
+  name: "",
+  description: "",
+  imagen: "",
+  price: "",
+};
+
+const formik = useFormik({
+  initialValues,
+  validationSchema,
+});
+
   const handleDelete = (id, name) => {
     let validator = window.confirm(
       `Are you sure you want to delete the menu ${name}?`
@@ -183,7 +212,7 @@ export const Administrator = () => {
         <form className="responsive-form">
           <div className="form-group">
             <label className="labes">
-              <h3 className="h3">Name</h3>
+              <h3 className="h3-admin">Name</h3>
               <input
                required
                 type="text"
@@ -197,9 +226,10 @@ export const Administrator = () => {
             </label>
           </div>
           <div className="form-group">
-            <label className="labes">
-              <h4 className="h3">Description</h4>
+            <label className="label-admins">
+              <h4 className="h3-admin">Description</h4>
               <textarea
+                className="textarea-admin"
                 required
                 value={menuEditable.description}
                 onChange={(event) =>
@@ -212,7 +242,7 @@ export const Administrator = () => {
           </div>
           <div className="form-group">
             <label className="labes">
-              <h3 className="h3">Price</h3>
+              <h3 className="h3-admin">Price</h3>
               <input
                required
                 type="number"
@@ -227,7 +257,7 @@ export const Administrator = () => {
           </div>
           <div className="form-group">
             <label className="labes">
-              <h3 className="h3">Image</h3>
+              <h3 className="h3-admin">Image</h3>
               <input
                 required
                 type="text"
@@ -256,6 +286,7 @@ export const Administrator = () => {
                 id="botoncrear"
                 type="button"
                 onClick={() => updateMenu(menuEditable)}
+                disabled={!formik.isValid}
               >
                 Edit
               </button>
@@ -277,6 +308,7 @@ export const Administrator = () => {
                 id="botoncrear"
                 type="button"
                 onClick={() => createMenu(menuEditable)}
+                disabled={!formik.isValid}
               >
                 Create
               </button>
