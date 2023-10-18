@@ -5,9 +5,9 @@ export const DataContext = createContext([]);
 export const DataProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  const addCart = (producto) => {
+  const addCart = (product) => {
     
-    setCart((prev) => [...prev, { ...producto }]);
+    setCart((prev) => [...prev, { ...product }]);
    
   };
   const clearCart = () => {

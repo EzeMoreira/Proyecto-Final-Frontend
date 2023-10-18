@@ -24,17 +24,11 @@ export const Carrito= () => {
 		    name: Yup.string()
 			    .required("* Obligatory field")
 			    .min(3,  "Name must be at least 3 characters")
-          .max(30, "The Name must have a maximum of 30 characters"),
+          .max(15, "The Name must have a maximum of 15 characters"),
 		    phone: Yup.string()
 		      .required("* Obligatory field")
-		      .min(7, "The phone number must have at least 7 characters")
-          .max(25, "The telephone number must have a maximum of 25 characters"),
-        address: Yup.string()
-          .required("* Obligatory field")
-          .min(6, "The address must be at least 6 characters")
-          .max(40, "The Address must have a maximum of 40 characters"),
-        checkbox: Yup.string()
-          .required("* Obligatory field")
+		      .min(6, "The phone number must have at least 6 characters")
+          .max(15, "The telephone number must have a maximum of 15 characters"),
              
     })
 
@@ -58,8 +52,8 @@ export const Carrito= () => {
             alert("The value entered is not valid. Please enter a number.");
             return;
           }
-          cart.forEach((producto) => {
-            addCart(producto, numericInputValue2);
+          cart.forEach((product) => {
+            addCart(product, numericInputValue2);
           });
           clearCart();
         }
@@ -69,8 +63,6 @@ export const Carrito= () => {
       initialValues: {
         name: "",   
         phone: "",  
-        address: "",
-        checkbox: false,
       },
       enableReinitialize: true,
       validationSchema,
@@ -143,29 +135,30 @@ export const Carrito= () => {
                     <th>Name</th>
                     <th id="img">img</th>
                     <th>Price</th>
-                    <th>Detalles del pedido</th>
                     <th>Cantidad</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                {cart.map(producto => (
-                    <tr key={producto.id}>
-                        <td id="td" data-label="Name:">{producto.name}</td>
+                {cart.map(product => (
+                    <tr key={product.id}>
+                        <td id="td" data-label="Name:">{product.name}</td>
                         <td id="img">
                             <img
                                 height={60}
-                                src={producto.imagen}
-                                alt={producto.name}
+                                src={product.imagen}
+                                alt={product.name}
                             />
                         </td>
-                        <td id="td" data-label="Price:">{producto.price}</td>
-                        <td id="td" data-label="Detalles:">{producto.description}</td>
-						            <td id="td" data-label="Cantidad:">{producto.cantidad}</td>
+                        <td id="td" data-label="Price:">{product.price}</td>
+                        <td id="td" data-label="Cantidad:">{product.cantidad}</td>
                         <td>
-							              <Button variant="danger" onClick={() => removeItemFromCart(producto.id)}>								
+							              <Button variant="danger" onClick={() => removeItemFromCart(product.id)}>								
                                  Delete
                             </Button>
                         </td>
+                        <td></td>
                     </tr>
                 ))}
             </tbody>
@@ -174,6 +167,7 @@ export const Carrito= () => {
                     <td>Total</td>
                     <td></td>
                     <td>{total()}</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -225,29 +219,9 @@ export const Carrito= () => {
             <div className="errorMessage">{formik.errors.phone}</div>
           )}  
         </Form.Group>
-        <Form.Group  className="form-group1" controlId="formBasicCheckbox">
-          {showDiv2 &&(
-          <div className="checkbox-label">
-            <Form.Check 
-              onChange={formik.handleChange}
-              value={formik.values.checkbox}
-              name="checkbox"
-              type="checkbox" 
-              label="Cash payment"
-              onBlur={formik.handleBlur}
-              className={
-                formik.errors.checkbox &&
-                formik.touched.checkbox &&
-                "error"} />
-            {formik.touched.checkbox && formik.errors.checkbox && (
-              <div className="errorMessage">{formik.errors.checkbox}</div>)} 
-          </div>
-          )}
-        </Form.Group>
         {showDiv2 &&(
        <div>
        <br />
-        <h6>If your payment is in cash, click here</h6>
         <Button 
           id="efectivo"
           variant="primary" 
@@ -258,42 +232,11 @@ export const Carrito= () => {
             border:"none"
           }}
           onClick={handleSubmit}
-          disabled={!formik.isValid || cart.length === 0 || !formik.values.checkbox}>
+          disabled={!formik.isValid || cart.length === 0 }>
           Cash payment
         </Button>
-        <Button
-        disabled={!formik.isValid || cart.length === 0}
-        variant="primary"
-        className="button-cart"
-        type="submit"
-        style={{
-          backgroundColor: '#372214',
-          border:"none"
-        }}
-        onClick={handlePagoOnline}
-        >
-        Online Payment
-        </Button>
         <br />
         <br />
-        </div>
-        )}
-        {showDiv && (
-        <div>
-          <div className="enviar_pedido">
-            <h6>If you completed the online payment, click here</h6>
-            <Button
-            variant="primary"
-            type="submit"
-            className="btn btn-info btn-block mt-4"
-            onClick={handleEnviarPedido}
-            disabled={!formik.isValid || cart.length === 0}
-            >
-            Send the order
-            </Button>
-          </div>
-          <br />
-          
         </div>
         )}
     </Form>

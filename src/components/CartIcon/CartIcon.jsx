@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../css/navBar.css"
 
 const CartIcon = ({ itemCount }) => {
   return (

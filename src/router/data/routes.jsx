@@ -31,7 +31,7 @@ export const routes = [
     ),
   },
   { 
-		path : "/carrito" , 
+		path : "/Carrito" , 
 		element: (
 			<IsNotLogged>
 		        <Carrito /> 
