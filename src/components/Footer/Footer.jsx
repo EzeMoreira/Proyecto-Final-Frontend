@@ -31,9 +31,9 @@ export const Footer = () => {
                         </div>
                         <div className="col-md-6 col-lg-4 col-12 ft-3">
                             <h5>Quick Links</h5>
-                            <p><i class="fa-solid fa-phone-volume"></i> +54 381######</p>
-                            <p><i class="fa-solid fa-envelope"></i> tucafe@gmail.com</p>
-                            <p><i class="fa-solid fa-paper-plane"></i> Tucumán, Argentina.</p>
+                            <p><i className="fa-solid fa-phone-volume"></i> +54 381######</p>
+                            <p><i className="fa-solid fa-envelope"></i> tucafe@gmail.com</p>
+                            <p><i className="fa-solid fa-paper-plane"></i> Tucumán, Argentina.</p>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ export const Menu = () => {
   return (
     <>
       <h1 className="title-menu"> Menu </h1>
-      <h3 className="title2">To make your purchase, add the product to the shopping cart</h3>
+      <h3 className="title2">To make your purchase add the product to the shopping cart.</h3>
       <div className="container-items">
         {menuItems.map((product) => (
           <Item key={product.id} {...product} />

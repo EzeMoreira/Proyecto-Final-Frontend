@@ -89,9 +89,8 @@
 @media (max-width: 1450px) {
     .container-items {
         grid-template-columns: repeat(2, 1fr);
-		margin-left: 11.5rem;
+		margin-left: 7.5rem;
     }
-
 
 }
 
@@ -106,8 +105,18 @@
 @media screen and (max-width: 680px) {
     .container-items {
         grid-template-columns: repeat(1, 1fr); 
-		margin-left: 7rem;
+		margin-left: 5rem;
     }
+
+	.item {
+		max-width: 18rem;
+		margin-left: 1rem;
+		margin-bottom: 4rem;
+	}
+
+	.item img {
+		max-width: 18rem;
+	}
 
 }
 
@@ -124,5 +133,15 @@
         grid-template-columns: repeat(1, 1fr); 
 		margin-left: 0.5rem;
     }
+
+	.item {
+		max-width: 15rem;
+		margin-left: 1rem;
+		margin-bottom: 4rem;
+	}
+
+	.item img {
+		max-width: 15rem;
+	}
 
 }

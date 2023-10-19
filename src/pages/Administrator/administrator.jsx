@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
-import * as Yup from "yup";
-import { useFormik } from "formik";
+import Swal from "sweetalert2";
 
 import "../../css/administrator.css";
 
@@ -40,11 +39,6 @@ export const Administrator = () => {
   const updateMenu = async (menu) => {
     const { name, description, id, price, imagen } = menu;
 
-    if (!name || !description || price === null || price === '' || !imagen) {
-      alert('Todos los campos son obligatorios. Por favor, llénelos todos.');
-      return;
-    }
-
     const resp = await axios.put(
       `${import.meta.env.VITE_SERVER_URI}/api/update-menu`,
       {
@@ -64,7 +58,7 @@ export const Administrator = () => {
 
     if (status === 200) {
       const othersMenues = menues.filter((prev) => prev.id !== menu.id);
-      setMenues([...othersMenues, menues]);
+      setMenues([...othersMenues, menu]);
     }
 
     setShowForm(false);
@@ -73,67 +67,62 @@ export const Administrator = () => {
 
   const createMenu = async (menu) => {
     const { name, description, price, imagen } = menu;
-
-    if (!name || !description || price === null || price === '' || !imagen) {
-      alert('All fields are required. Please fill them all out.');
-      return;
-    }
-
-    const resp = await axios.post(
-      `${import.meta.env.VITE_SERVER_URI}/api/create-menu`,
-      {
-        name,
-        description,
-        imagen,
-        price,
-      },
-      {
-        headers: { ...headers, accept: "application/json" },
+  
+    const result = await Swal.fire({
+      title: "Create Menu",
+      text: "¿Are you sure you want to create this menu??",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "Cancel",
+    });
+  
+    if (result.isConfirmed) {
+      try {
+        const resp = await axios.post(
+          `${import.meta.env.VITE_SERVER_URI}/api/create-menu`,
+          {
+            name,
+            description,
+            imagen,
+            price,
+          },
+          {
+            headers: { ...headers, accept: "application/json" },
+          }
+        );
+  
+        const { status } = resp;
+  
+        if (status === 201) {
+          const updatedMenus = [...menues, menu];
+          setMenues(updatedMenus);
+          setShowForm(false);
+          setShowButtons(true);
+          Swal.fire("Created Menu", "The menu has been created successfully.", "success");
+        }
+      } catch (error) {
+        Swal.fire("Error", "Could not create menu.", "error");
       }
-    );
-    const { status } = resp;
-
-    if (status === 201) {
-      const othersMenues = menues.filter((prev) => prev.id !== menu.id);
-      setMenues([...othersMenues, menu]);
     }
-
-    setShowForm(false);
-    setShowButtons(true);
   };
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .required("* Campo obligatorio")
-      .min(2, "El nombre debe tener al menos 3 caracteres"),
-    description: Yup.string()
-      .required("* Campo obligatorio")
-      .min(2, "La descripción debe tener al menos 3 caracteres"),
-    imagen: Yup.string()
-      .required("* Campo obligatorio")
-      .min(2, "La imagen debe tener al menos 3 caracteres"),
-    price: Yup.string()
-      .required("* Campo obligatorio")
-      .min(1, "El precio debe tener al menos 6 caracteres"),
-});
-
-const initialValues = {
-  name: "",
-  description: "",
-  imagen: "",
-  price: "",
-};
-
-const formik = useFormik({
-  initialValues,
-  validationSchema,
-});
-
   const handleDelete = (id, name) => {
-    let validator = window.confirm(
-      `Are you sure you want to delete the menu ${name}?`
-    );
-    if (validator) deleteMenu(id);
+    Swal.fire({
+      title: `¿Are you sure you want to delete the menu ${name}?`,
+      text: 'This action can not be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#372214',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Delet it',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMenu(id);
+        Swal.fire('Eliminated', `The ${name} menu has been removed.`, 'success');
+      }
+    });
   };
 
   const handleEdit = (menu) => {
@@ -216,7 +205,7 @@ const formik = useFormik({
               <input
                required
                 type="text"
-                value={menuEditable.name}
+                value={menuEditable.name || ''}
                 onChange={(event) =>
                   setMenuEditable((prev) => {
                     return { ...prev, name: event.target.value };
@@ -231,7 +220,7 @@ const formik = useFormik({
               <textarea
                 className="textarea-admin"
                 required
-                value={menuEditable.description}
+                value={menuEditable.description || ''}
                 onChange={(event) =>
                   setMenuEditable((prev) => {
                     return { ...prev, description: event.target.value };
@@ -244,9 +233,8 @@ const formik = useFormik({
             <label className="labes">
               <h3 className="h3-admin">Price</h3>
               <input
-               required
                 type="number"
-                value={menuEditable.price}
+                value={menuEditable.price || ''}
                 onChange={(event) =>
                   setMenuEditable((prev) => {
                     return { ...prev, price: event.target.value };
@@ -259,9 +247,8 @@ const formik = useFormik({
             <label className="labes">
               <h3 className="h3-admin">Image</h3>
               <input
-                required
                 type="text"
-                value={menuEditable.imagen}
+                value={menuEditable.imagen || ''}
                 onChange={(event) =>
                   setMenuEditable((prev) => {
                     return { ...prev, imagen: event.target.value };
@@ -286,7 +273,6 @@ const formik = useFormik({
                 id="botoncrear"
                 type="button"
                 onClick={() => updateMenu(menuEditable)}
-                disabled={!formik.isValid}
               >
                 Edit
               </button>
@@ -308,7 +294,6 @@ const formik = useFormik({
                 id="botoncrear"
                 type="button"
                 onClick={() => createMenu(menuEditable)}
-                disabled={!formik.isValid}
               >
                 Create
               </button>
