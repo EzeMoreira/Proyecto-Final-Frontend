@@ -10,6 +10,7 @@ import { Menu } from "../../pages/Menu";
 import { Login } from "../../pages/Login";
 import { Register } from "../../pages/Register";
 import { Carrito } from "../../pages/Carrito"
+//import { User } from "../../pages/Users"
 
 export const routes = [
   {
@@ -63,4 +64,12 @@ export const routes = [
       </IsAdmin>
     ),
   },
+  /*{
+    path: "/User",
+    element: (
+      <IsAdmin>
+        <User />
+      </IsAdmin>
+    ),
+  },*/
 ];

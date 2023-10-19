@@ -1,10 +1,13 @@
 import { useState, useEffect, useContext  } from "react";
 import { DataContext } from "../../components/DataContext/DataContext";
+import Swal from 'sweetalert2'
 import "../../css/menu.css";
 
 export const Item = ({ name, price, id, imagen }) => {
   const [menu, setMenu] = useState([]);
   const { addCart } = useContext(DataContext);
+
+  const [localInputValue, setLocalInputValue] = useState(1);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_SERVER_URI}/api/read-menues`)
@@ -12,10 +15,20 @@ export const Item = ({ name, price, id, imagen }) => {
       .then((loquerecibo) => setMenu(loquerecibo));
   }, []);
 
+  const handleInputChange2 = (event) => {
+    setLocalInputValue(event.target.value);
+  }
   
   const handleAddToCart = () => {
-    const itemToAdd = { name, price, id, imagen }; 
+    const itemToAdd = { name, price, id, imagen, cantidad: localInputValue }; 
     addCart(itemToAdd); 
+    setLocalInputValue(1)
+    Swal.fire({
+      icon: 'success',
+      title: 'Ready',
+      text: 'Product added correctly',
+      timer: '900'
+    })
   };
 
   return (
@@ -26,6 +39,17 @@ export const Item = ({ name, price, id, imagen }) => {
         </figure>
         <div className="info-product">
           <div>{name}</div>
+          <div className="menu-input">
+              <h5>Choose Quantity</h5>
+              <input
+                placeholder="¿How many menus do you want?"
+                type="number"
+                value={localInputValue}
+                min={1}
+                onChange={handleInputChange2}
+                required
+              />
+            </div>
           <div className="item-price">${price}</div>
             <button onClick={handleAddToCart}>+ Add to cart</button>
        </div>
