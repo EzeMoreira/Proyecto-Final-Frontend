@@ -11,6 +11,10 @@
 	margin-bottom: 3.5rem;
 }
 
+.img-prin{
+	width: 100%; 
+}  
+
 /* Main */
 .container-items {
 	display: grid;

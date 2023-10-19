@@ -9,8 +9,9 @@ import { Administrator } from "../../pages/Administrator";
 import { Menu } from "../../pages/Menu";
 import { Login } from "../../pages/Login";
 import { Register } from "../../pages/Register";
-import { Carrito } from "../../pages/Carrito"
-//import { User } from "../../pages/Users"
+import { Carrito } from "../../components/Carrito/Carrito";
+import { Users } from "../../pages/Users";
+import { Orders } from "../../pages/Orders";
 
 export const routes = [
   {
@@ -64,12 +65,20 @@ export const routes = [
       </IsAdmin>
     ),
   },
-  /*{
-    path: "/User",
+  {
+    path: "/Users",
     element: (
       <IsAdmin>
-        <User />
+        <Users />
       </IsAdmin>
     ),
-  },*/
+  },
+  { 
+		path : "/Orders", 
+		element: (
+		    <IsAdmin>
+		        <Orders />
+		    </IsAdmin>
+		),
+	},
 ];

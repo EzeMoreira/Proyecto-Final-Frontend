@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { DataContext } from "../DataContext/DataContext";
-import CartIcon from "../CartIcon/CartIcon";
+import CartIcon from "../Carrito/CartIcon/CartIcon";
 import logo from "../../Coffe-img/logo.png";
 import "../../css/navBar.css";
 
@@ -52,8 +52,13 @@ export const NavBar = () => {
           <>
             {localStorage.getItem("role") === "admin" && (
 							<li>
-								<NavLink to="/User"><h4>Usuarios</h4></NavLink>
-              </li>
+								<NavLink to="/Users">Users</NavLink>
+							</li>
+						)}
+            {localStorage.getItem("role") === "admin" && (
+							<li>
+								<NavLink to="/orders">Orders</NavLink>
+							</li>
 						)}
             {localStorage.getItem("role") === "admin" && (
               <li>
