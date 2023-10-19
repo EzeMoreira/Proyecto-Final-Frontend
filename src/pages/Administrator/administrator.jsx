@@ -39,6 +39,11 @@ export const Administrator = () => {
   const updateMenu = async (menu) => {
     const { name, description, id, price, imagen } = menu;
 
+    if (!name || !description || price === null || price === '' || !imagen) {
+      alert('Todos los campos son obligatorios. Por favor, llénelos todos.');
+      return;
+    }
+
     const resp = await axios.put(
       `${import.meta.env.VITE_SERVER_URI}/api/update-menu`,
       {
@@ -58,7 +63,7 @@ export const Administrator = () => {
 
     if (status === 200) {
       const othersMenues = menues.filter((prev) => prev.id !== menu.id);
-      setMenues([...othersMenues, menu]);
+      setMenues([...othersMenues, menues]);
     }
 
     setShowForm(false);
@@ -175,6 +180,10 @@ export const Administrator = () => {
                   <button
                     id="botonEliminar"
                     className="btn btn-danger mr-2 mb-2"
+                    style={{
+                      backgroundColor:"#372214",
+                      borderStyle:"none",
+                    }}
                     onClick={() => handleDelete(menu.id, menu.name)}
                   >
                     Delete
@@ -182,6 +191,12 @@ export const Administrator = () => {
                   <button
                     id="botonEditar"
                     className="btn btn-warning mr-2 mb-2 "
+                    style={{
+                      backgroundColor:"black",
+                      color:"white",
+                      borderStyle:"none",
+                      marginLeft: "0.5rem",
+                    }}
                     onClick={() => handleEdit(menu)}
                   >
                     Edit
@@ -262,6 +277,12 @@ export const Administrator = () => {
             <button
                 id="botoncrear"
                 type="button"
+                className="btn btn-danger mr-2 mb-2"
+                    style={{
+                      backgroundColor:"Black",
+                      borderStyle:"none",
+                      margin:"0",
+                    }}
                 onClick={() => {
                   setShowForm(false);
                   setShowButtons(true);
@@ -272,6 +293,12 @@ export const Administrator = () => {
               <button
                 id="botoncrear"
                 type="button"
+                className="btn btn-danger mr-2 mb-2"
+                style={{
+                  backgroundColor:"#372214",
+                  borderStyle:"none",
+                  margin:"0",
+                }}
                 onClick={() => updateMenu(menuEditable)}
               >
                 Edit
@@ -283,6 +310,12 @@ export const Administrator = () => {
               <button
                 id="botoncrear"
                 type="button"
+                className="btn btn-danger mr-2 mb-2"
+                    style={{
+                      backgroundColor:"Black",
+                      borderStyle:"none",
+                      margin:"0",
+                    }}
                 onClick={() => {
                   setShowForm(false);
                   setShowButtons(true);
@@ -293,6 +326,12 @@ export const Administrator = () => {
               <button
                 id="botoncrear"
                 type="button"
+                className="btn btn-danger mr-2 mb-2"
+                    style={{
+                      backgroundColor:"#372214",
+                      borderStyle:"none",
+                      margin:"0",
+                    }}
                 onClick={() => createMenu(menuEditable)}
               >
                 Create

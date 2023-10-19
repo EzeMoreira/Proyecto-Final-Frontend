@@ -80,7 +80,7 @@ nav .menu span {
     text-decoration: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 938px) {
     nav .menu {
         display: flex;
     }

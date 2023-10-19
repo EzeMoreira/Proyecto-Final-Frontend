@@ -25,7 +25,10 @@ export const Footer = () => {
                                     <a className="" href="/menu">Services</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="" href="/about">Contact Us</a>
+                                    <a className="" href="/about">About Us</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="" href="/contact">Contact Us</a>
                                 </li>
                             </ul>
                         </div>
