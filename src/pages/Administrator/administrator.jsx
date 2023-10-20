@@ -68,6 +68,7 @@ export const Administrator = () => {
 
     setShowForm(false);
     setShowButtons(true);
+    window.location.reload();
   };
 
   const createMenu = async (menu) => {
