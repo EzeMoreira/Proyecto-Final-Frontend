@@ -1,1 +1,1 @@
-export {Administrator} from "./Administrator"
+export {Administrator} from "./administrator"
