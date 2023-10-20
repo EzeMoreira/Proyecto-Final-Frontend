@@ -129,19 +129,7 @@ export const Users = () => {
 			{showForm && (
 				<form className="responsive-form">
 					<div className="form-group">
-						<label>username</label>
-						<input
-							type="text"
-							value={userEditable.username}
-							onChange={event =>
-								setuserEditable(prev => {
-									return { ...prev, username: event.target.value }
-								})
-							}
-						/>
-					</div>
-					<div className="form-group">
-						<label>role</label>
+						<label style={{color:"black"}}>role</label>
 						<textarea
 							value={userEditable.role}
 							onChange={event =>
@@ -152,7 +140,7 @@ export const Users = () => {
 						></textarea>
 					</div>
                     <div className="form-group">
-						<label>Email</label>
+						<label style={{color:"black"}}>Email</label>
 						<textarea
 							value={userEditable.email}
 							onChange={event =>
