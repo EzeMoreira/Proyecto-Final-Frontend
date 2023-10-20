@@ -68,7 +68,7 @@ export const Administrator = () => {
 
     setShowForm(false);
     setShowButtons(true);
-    window.location.reload();
+    window.location.href = "/Administrator";
   };
 
   const createMenu = async (menu) => {
