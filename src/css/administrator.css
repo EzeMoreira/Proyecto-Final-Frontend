@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding:"10rem"
 }
 
 .h1admin {
@@ -99,6 +100,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 150vh;
+  padding:"10rem"
 }
 #botoncrear {
   width: 100px;
@@ -124,6 +126,7 @@
     text-align: center;
     padding: 4px;
   }
+
   #botonEliminar {
     width: 100%;
   }
@@ -132,6 +135,7 @@
   }
   #admin {
     width: auto !important;
+    padding: none;
   }
   #thead {
     display: none;

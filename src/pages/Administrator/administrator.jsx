@@ -40,7 +40,7 @@ export const Administrator = () => {
     const { name, description, id, price, imagen } = menu;
 
     if (!name || !description || price === null || price === '' || !imagen) {
-      alert('Todos los campos son obligatorios. Por favor, llénelos todos.');
+      alert('All fields are required. Please fill them all out.');
       return;
     }
 

@@ -11,7 +11,7 @@ export const NavBar = () => {
   const [cartItems] = useState([]);
 
   const handleClick = () => {
-    let validator = window.confirm(`Esta seguro que desea cerrar sesion?`);
+    let validator = window.confirm(`Are you sure you want to log out?`);
     if (validator) {
       localStorage.clear();
       window.location.reload();
