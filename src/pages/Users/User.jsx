@@ -21,7 +21,7 @@ export const Users = () => {
 
   const deleteUser = async (id) => {
     const resp = await axios.delete(
-      `${import.meta.env.VITE_SERVER_URI}/api/delete-user/${id}`,
+      `${import.meta.env.VITE_SERVER_URI}/api/deleteuser/${id}`,
       {
         headers,
       }
