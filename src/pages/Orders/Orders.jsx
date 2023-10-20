@@ -56,7 +56,7 @@ export const Orders = () => {
 			}}
 	};
 	return (
-		<Container id="admin" className="admin-container">
+		<Container id="admin" className="admin-container" style={{padding:"10rem"}}>
 			<h1 className="h1">Orders</h1>
 			<br />
 				<table id="responsive-table" className="table" >

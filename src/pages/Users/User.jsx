@@ -75,7 +75,7 @@ export const Users = () => {
 
 
 	return (
-		<Container id="admin" className="admin-container">
+		<Container id="admin" className="admin-container" style={{padding:"10rem"}}>
 			<h1 id="h1usuario" >Users</h1>
 			<br />
 			{!showForm && (
@@ -129,7 +129,7 @@ export const Users = () => {
 			{showForm && (
 				<form className="responsive-form">
 					<div className="form-group">
-						<label style={{color:"black"}}>role</label>
+						<label style={{color:"black", marginRight:"1rem"}}>role</label>
 						<textarea
 							value={userEditable.role}
 							onChange={event =>
@@ -140,7 +140,7 @@ export const Users = () => {
 						></textarea>
 					</div>
                     <div className="form-group">
-						<label style={{color:"black"}}>Email</label>
+						<label style={{color:"black", marginRight:"1rem"}}>Email</label>
 						<textarea
 							value={userEditable.email}
 							onChange={event =>
