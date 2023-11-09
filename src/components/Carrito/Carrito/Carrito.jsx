@@ -30,7 +30,7 @@ export const Carrito = () => {
       phone: Yup.string()
         .required("* Obligatory field")
         .min(8, "The Telephone must have at least 8 characters")
-        .max(12, "The Telephone must have a maximum of 12 characters"),
+        .max(10, "The Telephone must have a maximum of 10 characters"),
       checkbox: Yup.string().required("* Obligatory field"),
     });
 
@@ -203,7 +203,7 @@ export const Carrito = () => {
           <Form.Label>Phone</Form.Label>
           <Form.Control
             onChange={(e) => {
-              const inputValue = e.target.value.replace(/\D/g, ""); // Elimina todos los caracteres que no son dígitos
+              const inputValue = e.target.value.replace(/\D/g, "");
               formik.handleChange({
                 target: {
                   name: "phone",
@@ -215,7 +215,7 @@ export const Carrito = () => {
             name="phone"
             className={formik.errors.phone && formik.touched.phone && "error"}
             minLength={8}
-            maxLength={12}
+            maxLength={10}
             value={formik.values.phone}
             onBlur={formik.handleBlur}
           />
