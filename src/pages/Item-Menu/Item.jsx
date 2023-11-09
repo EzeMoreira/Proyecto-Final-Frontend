@@ -16,8 +16,14 @@ export const Item = ({ name, price, id, imagen }) => {
   }, []);
 
   const handleInputChange2 = (event) => {
-    setLocalInputValue(event.target.value);
+    let inputValue = event.target.value;
+  
+    inputValue = inputValue.length > 0 ? Math.min(parseInt(inputValue), 5) : 1;
+  
+    setLocalInputValue(inputValue);
   }
+  
+  
   
   const handleAddToCart = () => {
     const itemToAdd = { name, price, id, imagen, cantidad: localInputValue }; 
@@ -44,8 +50,9 @@ export const Item = ({ name, price, id, imagen }) => {
               <input
                 placeholder="¿How many menus do you want?"
                 type="number"
-                value={localInputValue}
                 min={1}
+                max={5}
+                value={localInputValue}
                 onChange={handleInputChange2}
                 required
               />

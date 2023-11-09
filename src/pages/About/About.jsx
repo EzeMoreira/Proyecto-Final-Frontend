@@ -56,17 +56,17 @@ export const About = () => {
 
                   <ul className="team-icon">
                     <li>
-                      <a href="#" className="twitter">
+                      <a href="*" className="twitter">
                         <FaTwitter />
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="facebook">
+                      <a href="*" className="facebook">
                         <FaFacebook />
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="linkedin">
+                      <a href="*" className="linkedin">
                         <FaLinkedin />
                       </a>
                     </li>

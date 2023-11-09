@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
-import "../../css/user.css"
+import "../../css/user.css";
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -73,10 +73,7 @@ export const Users = () => {
   };
 
   return (
-    <Container
-      className="admin-container"
-     
-    >
+    <Container className="admin-container">
       <h1 id="h1usuario">Users</h1>
       <br />
       {!showForm && (
@@ -134,15 +131,19 @@ export const Users = () => {
       {showForm && (
         <form className="responsive-form">
           <div className="form-group">
-            <label style={{ color: "black", marginRight: "1rem" }}>role</label>
-            <textarea
+            <label style={{ color: "black", marginRight: "1rem" }}>Role</label>
+            <select
               value={userEditable.role}
-              onChange={(event) =>
+              onChange={(event) => {
+                const inputValue = event.target.value;
                 setuserEditable((prev) => {
-                  return { ...prev, role: event.target.value };
-                })
-              }
-            ></textarea>
+                  return { ...prev, role: inputValue };
+                });
+              }}
+            >
+              <option value="admin">admin</option>
+              <option value="client">client</option>
+            </select>
           </div>
           <div className="form-group">
             <label style={{ color: "black", marginRight: "1rem" }}>Email</label>

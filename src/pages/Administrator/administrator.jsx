@@ -39,8 +39,8 @@ export const Administrator = () => {
   const updateMenu = async (menu) => {
     const { name, description, id, price, imagen } = menu;
 
-    if (!name || !description || price === null || price === '' || !imagen) {
-      alert('All fields are required. Please fill them all out.');
+    if (!name || !description || price === null || price === "" || !imagen) {
+      alert("All fields are required. Please fill them all out.");
       return;
     }
 
@@ -73,7 +73,7 @@ export const Administrator = () => {
 
   const createMenu = async (menu) => {
     const { name, description, price, imagen } = menu;
-  
+
     const result = await Swal.fire({
       title: "Create Menu",
       text: "¿Are you sure you want to create this menu??",
@@ -82,7 +82,7 @@ export const Administrator = () => {
       confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
     });
-  
+
     if (result.isConfirmed) {
       try {
         const resp = await axios.post(
@@ -97,15 +97,19 @@ export const Administrator = () => {
             headers: { ...headers, accept: "application/json" },
           }
         );
-  
+
         const { status } = resp;
-  
+
         if (status === 201) {
           const updatedMenus = [...menues, menu];
           setMenues(updatedMenus);
           setShowForm(false);
           setShowButtons(true);
-          Swal.fire("Created Menu", "The menu has been created successfully.", "success");
+          Swal.fire(
+            "Created Menu",
+            "The menu has been created successfully.",
+            "success"
+          );
         }
       } catch (error) {
         Swal.fire("Error", "Could not create menu.", "error");
@@ -116,17 +120,21 @@ export const Administrator = () => {
   const handleDelete = (id, name) => {
     Swal.fire({
       title: `¿Are you sure you want to delete the menu ${name}?`,
-      text: 'This action can not be undone.',
-      icon: 'warning',
+      text: "This action can not be undone.",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#372214',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, Delet it',
-      cancelButtonText: 'Cancel',
+      confirmButtonColor: "#372214",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delet it",
+      cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteMenu(id);
-        Swal.fire('Eliminated', `The ${name} menu has been removed.`, 'success');
+        Swal.fire(
+          "Eliminated",
+          `The ${name} menu has been removed.`,
+          "success"
+        );
       }
     });
   };
@@ -182,8 +190,8 @@ export const Administrator = () => {
                     id="botonEliminar"
                     className="btn btn-danger mr-2 mb-2"
                     style={{
-                      backgroundColor:"#372214",
-                      borderStyle:"none",
+                      backgroundColor: "#372214",
+                      borderStyle: "none",
                     }}
                     onClick={() => handleDelete(menu.id, menu.name)}
                   >
@@ -193,9 +201,9 @@ export const Administrator = () => {
                     id="botonEditar"
                     className="btn btn-warning mr-2 mb-2 "
                     style={{
-                      backgroundColor:"black",
-                      color:"white",
-                      borderStyle:"none",
+                      backgroundColor: "black",
+                      color: "white",
+                      borderStyle: "none",
                       marginLeft: "0.5rem",
                     }}
                     onClick={() => handleEdit(menu)}
@@ -219,14 +227,18 @@ export const Administrator = () => {
             <label className="labes">
               <h3 className="h3-admin">Name</h3>
               <input
-               required
+                required
                 type="text"
-                value={menuEditable.name || ''}
-                onChange={(event) =>
+                value={menuEditable.name || ""}
+                onChange={(event) => {
+                  const inputValue = event.target.value;
                   setMenuEditable((prev) => {
-                    return { ...prev, name: event.target.value };
-                  })
-                }
+                    if (inputValue.trim() !== "" || inputValue === "") {
+                      return { ...prev, name: inputValue };
+                    }
+                    return prev;
+                  });
+                }}
               />
             </label>
           </div>
@@ -236,12 +248,17 @@ export const Administrator = () => {
               <textarea
                 className="textarea-admin"
                 required
-                value={menuEditable.description || ''}
-                onChange={(event) =>
+                value={menuEditable.description || ""}
+                onChange={(event) => {
+                  let inputValue = event.target.value;
+                  inputValue = inputValue
+                    .replace(/[^A-Za-z\s]/g, "")
+                    .substring(0, 50);
+
                   setMenuEditable((prev) => {
-                    return { ...prev, description: event.target.value };
-                  })
-                }
+                    return { ...prev, description: inputValue };
+                  });
+                }}
               ></textarea>
             </label>
           </div>
@@ -250,13 +267,15 @@ export const Administrator = () => {
               <h3 className="h3-admin">Price</h3>
               <input
                 type="number"
-                value={menuEditable.price || ''}
-                onChange={(event) =>
+                value={menuEditable.price || ""}
+                onChange={(event) => {
+                  let inputValue = event.target.value;
+                  inputValue = inputValue.substring(0, 2);
                   setMenuEditable((prev) => {
-                    return { ...prev, price: event.target.value };
-                  })
-                }
-              ></input>
+                    return { ...prev, price: inputValue };
+                  });
+                }}
+              />
             </label>
           </div>
           <div className="form-group">
@@ -264,7 +283,7 @@ export const Administrator = () => {
               <h3 className="h3-admin">Image</h3>
               <input
                 type="text"
-                value={menuEditable.imagen || ''}
+                value={menuEditable.imagen || ""}
                 onChange={(event) =>
                   setMenuEditable((prev) => {
                     return { ...prev, imagen: event.target.value };
@@ -275,15 +294,15 @@ export const Administrator = () => {
           </div>
           {createOrEdit === "edit" && (
             <>
-            <button
+              <button
                 id="botoncrear"
                 type="button"
                 className="btn btn-danger mr-2 mb-2"
-                    style={{
-                      backgroundColor:"Black",
-                      borderStyle:"none",
-                      margin:"0",
-                    }}
+                style={{
+                  backgroundColor: "Black",
+                  borderStyle: "none",
+                  margin: "0",
+                }}
                 onClick={() => {
                   setShowForm(false);
                   setShowButtons(true);
@@ -296,9 +315,9 @@ export const Administrator = () => {
                 type="button"
                 className="btn btn-danger mr-2 mb-2"
                 style={{
-                  backgroundColor:"#372214",
-                  borderStyle:"none",
-                  margin:"0",
+                  backgroundColor: "#372214",
+                  borderStyle: "none",
+                  margin: "0",
                 }}
                 onClick={() => updateMenu(menuEditable)}
               >
@@ -312,11 +331,11 @@ export const Administrator = () => {
                 id="botoncrear"
                 type="button"
                 className="btn btn-danger mr-2 mb-2"
-                    style={{
-                      backgroundColor:"Black",
-                      borderStyle:"none",
-                      margin:"0",
-                    }}
+                style={{
+                  backgroundColor: "Black",
+                  borderStyle: "none",
+                  margin: "0",
+                }}
                 onClick={() => {
                   setShowForm(false);
                   setShowButtons(true);
@@ -328,11 +347,11 @@ export const Administrator = () => {
                 id="botoncrear"
                 type="button"
                 className="btn btn-danger mr-2 mb-2"
-                    style={{
-                      backgroundColor:"#372214",
-                      borderStyle:"none",
-                      margin:"0",
-                    }}
+                style={{
+                  backgroundColor: "#372214",
+                  borderStyle: "none",
+                  margin: "0",
+                }}
                 onClick={() => createMenu(menuEditable)}
               >
                 Create

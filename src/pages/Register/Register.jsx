@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { useFormik } from "formik";
 import Container from "react-bootstrap/Container";
 import theme2 from "../../Coffe-img/theme2.png";
-import "../../css/register.css"
+import "../../css/register.css";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -68,16 +68,18 @@ export const Register = () => {
     <>
       <div
         className="cont-form-reg"
-		style={{
-			backgroundImage: `url(${theme2})`,
-			backgroundSize: "cover",
-			backgroundRepeat: "no-repeat",
-			backgroundPosition: "center center",
-		  }}
+        style={{
+          backgroundImage: `url(${theme2})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center center",
+        }}
       >
         <Container className="cont-form-reg">
           <Form className="formu-reg" onSubmit={formik.handleSubmit}>
-            <h1 className="title-form-reg" style={{ textAlign: "center" }}>Register</h1>
+            <h1 className="title-form-reg" style={{ textAlign: "center" }}>
+              Register
+            </h1>
             <Form.Group className="content-form-reg" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -97,7 +99,10 @@ export const Register = () => {
                 <div className="errorMessage">{formik.errors.email}</div>
               )}
             </Form.Group>
-            <Form.Group className="content-form-reg" controlId="formBasicPassword">
+            <Form.Group
+              className="content-form-reg"
+              controlId="formBasicPassword"
+            >
               <Form.Label>Password</Form.Label>
               <Form.Control
                 name="password"
@@ -128,14 +133,26 @@ export const Register = () => {
                 minLength={3}
                 placeholder="Choose a username"
                 value={formik.values.username}
-                onChange={formik.handleChange}
+                onChange={(event) => {
+                  const inputValue = event.target.value;
+                  const trimmedValue = inputValue.replace(/^\s+/, "");
+                  formik.handleChange({
+                    target: {
+                      name: "username",
+                      value: trimmedValue,
+                    },
+                  });
+                }}
                 onBlur={formik.handleBlur}
               />
               {formik.touched.username && formik.errors.username && (
                 <div className="errorMessage">{formik.errors.username}</div>
               )}
             </Form.Group>
-            <Form.Group className="content-form-reg" controlId="formBasicAddress">
+            <Form.Group
+              className="content-form-reg"
+              controlId="formBasicAddress"
+            >
               <Form.Label>Address</Form.Label>
               <Form.Control
                 name="address"
@@ -145,26 +162,35 @@ export const Register = () => {
                 maxLength={30}
                 minLength={6}
                 placeholder="Enter your address"
-                type="address"
+                type="text"
                 value={formik.values.address}
-                onChange={formik.handleChange}
+                onChange={(event) => {
+                  const inputValue = event.target.value.replace(/^\s+/, ""); // Eliminar espacios al principio
+                  formik.handleChange({
+                    target: {
+                      name: "address",
+                      value: inputValue,
+                    },
+                  });
+                }}
                 onBlur={formik.handleBlur}
               />
               {formik.touched.address && formik.errors.address && (
                 <div className="errorMessage">{formik.errors.address}</div>
               )}
             </Form.Group>
+
             <Button
-			  className="button-form-reg"
+              className="button-form-reg"
               type="submit"
-			  style={{ backgroundColor: "#794228", borderStyle: "none" }}
+              style={{ backgroundColor: "#794228", borderStyle: "none" }}
               onClick={handleSubmit}
               disabled={!formik.isValid}
             >
               Register
             </Button>
-			<NavLink to="/login" className="text-reg">
-			  Already you have an account?, Log in
+            <NavLink to="/login" className="text-reg">
+              Already you have an account?, Log in
             </NavLink>
           </Form>
         </Container>

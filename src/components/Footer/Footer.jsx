@@ -12,10 +12,10 @@ export const Footer = () => {
                             <h3><span>Tu</span>Café</h3>
                             <p>Your favorite coffee shop since 2023.</p>
                             <div className="footer-icons">
-                                <i class="fa-brands fa-facebook"> <FaFacebook /> </i>
-                                <i class="fa-brands fa-twitter"> <FaTwitter /> </i>
-                                <i class="fa-brands fa-instagram"> <FaInstagram /> </i>
-                                <i class="fa-brands fa-linkedin-in"> <FaLinkedin /> </i>
+                                <i class="fa-brands fa-facebook"> <a href="/Error404"><FaFacebook /></a> </i>
+                                <i class="fa-brands fa-twitter"> <a href="/Error404"><FaTwitter /></a> </i>
+                                <i class="fa-brands fa-instagram"> <a href="/Error404"><FaInstagram /></a> </i>
+                                <i class="fa-brands fa-linkedin-in"> <a href="/Error404"><FaLinkedin /></a></i>
                             </div>
                         </div>
                         <div className="col-md-6 col-lg-3 col-12 ft-2">
