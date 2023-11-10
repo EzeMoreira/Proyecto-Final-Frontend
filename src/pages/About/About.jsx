@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTwitter, FaFacebook, FaLinkedin } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import "../../css/aboutus.css";
 import a1 from "../../Coffe-img/a1.jpg";
 import l1 from "../../Coffe-img/l1.jpg";
@@ -56,19 +57,19 @@ export const About = () => {
 
                   <ul className="team-icon">
                     <li>
-                      <a href="*" className="twitter">
+                      <Link to="/does-not-exist" className="twitter">
                         <FaTwitter />
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="*" className="facebook">
+                      <Link to="/does-not-exist" className="facebook">
                         <FaFacebook />
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="*" className="linkedin">
+                      <Link to="/does-not-exist" className="linkedin">
                         <FaLinkedin />
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
